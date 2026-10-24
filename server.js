@@ -71,12 +71,12 @@ app.get('/api/gas', async (req, res) => {
     } catch (e) { res.json({ result: { list: [{ lastPrice: "3.20", highPrice24h: "3.26", lowPrice24h: "3.14" }] } }); }
 });
 
-// ៨. ហាងឆេងលុយ (Forex: USD, KHR, KRW, JPY)
+// ៨. ហាងឆេងលុយ (Forex: USD, KHR, CNY, KRW, JPY)
 app.get('/api/forex', async (req, res) => {
     try {
         const data = await (await fetch('https://open.er-api.com/v6/latest/USD')).json();
-        res.json({ result: { khr: data.rates.KHR || 4085, krw: data.rates.KRW || 1445, jpy: data.rates.JPY || 153.8 } });
-    } catch (e) { res.json({ result: { khr: 4085, krw: 1445, jpy: 153.8 } }); }
+        res.json({ result: { khr: data.rates.KHR || 4085, cny: data.rates.CNY || 7.25, krw: data.rates.KRW || 1445, jpy: data.rates.JPY || 153.8 } });
+    } catch (e) { res.json({ result: { khr: 4085, cny: 7.25, krw: 1445, jpy: 153.8 } }); }
 });
 
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
